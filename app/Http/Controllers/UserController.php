@@ -117,6 +117,7 @@ class UserController extends Controller
             'password' => 'required|max:10|min:4|confirmed'
         ]);
 
+		
         //print_r($request['password']);
         //die();
 
