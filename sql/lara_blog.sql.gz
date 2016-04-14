@@ -1,0 +1,132 @@
+-- phpMyAdmin SQL Dump
+-- version 4.2.11
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 06, 2016 at 01:28 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `lara_blog`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2016_03_22_041657_create_users_table', 1),
+('2016_03_22_122816_create_posts_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE IF NOT EXISTS `posts` (
+`id` int(10) unsigned NOT NULL,
+  `body` text COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `body`, `user_id`, `created_at`, `updated_at`) VALUES
+(12, 'Hello World', 1, '2016-04-04 04:30:52', '2016-04-04 04:30:52'),
+(13, 'Pop Up is working', 1, '2016-04-04 04:32:58', '2016-04-04 04:32:58'),
+(14, 'Never give up for any thing. You should have passion for it. gfgfg', 1, '2016-04-04 04:33:41', '2016-04-05 00:24:30'),
+(15, 'এটা বাংলায় লেখা পোস্ট', 3, '2016-04-04 05:06:10', '2016-04-04 05:06:10'),
+(16, 'Life is a gift never to give up.Never give up. If you just hang in there, if you just consistently keep moving forward with a positive attitude magic happens, miracle do happen', 3, '2016-04-04 05:33:56', '2016-04-04 05:33:56'),
+(17, 'This is new post ', 3, '2016-04-04 22:21:31', '2016-04-04 23:54:14'),
+(19, '1 habib', 1, '2016-04-05 00:55:07', '2016-04-05 04:02:26'),
+(20, 'here is new post g', 1, '2016-04-05 04:38:51', '2016-04-06 03:28:07'),
+(21, 'মেঘেদের পাল তুলে ...  f', 1, '2016-04-05 08:48:43', '2016-04-06 03:27:55'),
+(23, 'Created new profile image', 3, '2016-04-05 11:38:45', '2016-04-05 11:38:45'),
+(24, 'this is another post', 1, '2016-04-06 03:29:06', '2016-04-06 03:40:14'),
+(25, 'ht f', 1, '2016-04-06 03:40:14', '2016-04-06 03:41:10'),
+(26, 'hg gf', 1, '2016-04-06 03:43:15', '2016-04-06 03:43:21'),
+(27, 'Be happy, not because everything is good but because you see the good in everything.', 1, '2016-04-06 04:10:54', '2016-04-06 04:10:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+`id` int(10) unsigned NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `first_name`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'hbrawnak@gmail.com', 'Habib', '$2y$10$5XarCXGO8PG7t51YHc5Oj.KBRsLnazIrJhrrdFao7r7k9mT5p3jLi', 'MBDYptIOozO6rbYBtrNpWLaGi04lyC5rwBiFUIhPTvjz6CwJOwsbYROeH2CO', '2016-03-21 23:58:41', '2016-04-06 04:21:53'),
+(3, 'rea@gmail.com', 'Afsana Ahmed Rea', '$2y$10$cF5xRGwCF9DMBuEhiwbEXela6nc5PNjFCkFM52EDPmZ1IyaOkjsaW', 'OlRDUPswl6Z2TBKJzqAaXP3iex0QdVtQFcWL6ivIbr3KAMwfFebZC2QYlmET', '2016-03-22 00:44:48', '2016-04-05 11:38:08');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
