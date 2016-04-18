@@ -97,9 +97,6 @@ class AdminController extends Controller {
         {
             return redirect()->route('adminDashboard')->with(['message' => 'User profile did not update!']);
         }
-
-
-
     }
 
     public function getAdminLogin()

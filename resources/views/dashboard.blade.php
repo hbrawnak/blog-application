@@ -41,7 +41,10 @@
         <div class="col-md-6 col-md-offset-3">
               @foreach($posts as $post)
                 <article class="post" data-postid="{{ $post->id }}">
-                    <p>{{ $post->body }}</p>
+                    <p>{{ str_limit($post->body, $limit = 100, $end ="...") }}
+                    <a class='btn btn-link' href='#' role='button'>See More</a>
+                    </p>
+
                     <div class="info">
                     @if(Auth::user() != $post->user)
                         Posted by <a href="{{ route('profile',[$post->user_id]) }}">{{ $post->user->first_name }}</a> on {{ $post->created_at }}
