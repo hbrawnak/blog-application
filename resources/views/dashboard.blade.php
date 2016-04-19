@@ -1,3 +1,7 @@
+{{--@foreach($posts as $post)
+{{ print_r(count(str_limit($post->body))) }}
+@endforeach
+{{die()}}--}}
 @extends('layouts.master')
 
 @section('title')
@@ -41,8 +45,10 @@
         <div class="col-md-6 col-md-offset-3">
               @foreach($posts as $post)
                 <article class="post" data-postid="{{ $post->id }}">
-                    <p>{{ str_limit($post->body, $limit = 100, $end ="...") }}
-                    <a class='btn btn-link' href='#' role='button'>See More</a>
+                    <p>{{ str_limit($post->body, $limit = 200, $end ="...") }}
+                    @if(strlen($post->body) >= 200 )
+                    <a class="btn btn-link" href="{{ route('post', ['post_id' => $post->id]) }}" role='button'>See More</a>
+                    @endif
                     </p>
 
                     <div class="info">

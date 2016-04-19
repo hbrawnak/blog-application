@@ -91,11 +91,11 @@ class AdminController extends Controller {
             $new_pass = bcrypt($request['password']);
             $user->password = $new_pass;
             DB::table('users')->where('id', $user_id)->update(['password' => $new_pass]);
-            return redirect()->route('adminDashboard')->with(['message' => 'User profile has updated!']);
+            return redirect()->back()->with(['message' => 'User profile has updated!']);
         }
         else
         {
-            return redirect()->route('adminDashboard')->with(['message' => 'User profile did not update!']);
+            return redirect()->back()->with(['message' => 'User profile did not update!']);
         }
     }
 

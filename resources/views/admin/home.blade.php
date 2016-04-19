@@ -57,7 +57,7 @@
                 }
                 ?>
                     <a class="btn btn-default" href="{{ route('user.delete', ['user_id' => $user->id]) }}" title="Delete User" role="button">Delete</a>
-                    <a class="btn btn-default" href="{{ route('user-profile', ['user_id' => $user->id]) }}" title="View Posts" role="button">View Posts</a>
+                    <a class="btn btn-default" href="{{ route('user-profile', ['user_id' => $user->id]) }}" title="View Posts" role="button">View Profile</a>
                 </td>
             </tr>
         @endforeach

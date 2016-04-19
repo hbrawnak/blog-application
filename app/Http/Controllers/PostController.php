@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -28,6 +29,12 @@ class PostController extends Controller
             $message = 'Post successfully created!';
         }
         return redirect()->back()->with(['message' => $message]);
+    }
+
+    public function getSinglePost($post_id)
+    {
+        $posts = DB::table('posts')->where('id', $post_id)->get();
+        return view('single', ['posts' => $posts]);
     }
 
     public function getDeletePost($post_id)

@@ -28,7 +28,7 @@
                 <p class="form-control">{{ $user->email }}</p>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">New Password:</label>
                 <input class="form-control" type="password" name="password" id="password"/>
             </div>
              <div class="form-group">

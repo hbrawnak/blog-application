@@ -51,6 +51,12 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ]);
 
+    Route::get('/single-post/{post_id}',[
+        'uses' => 'PostController@getSinglePost',
+        'as' => 'post',
+        'middleware' => 'auth'
+    ]);
+
     Route::get('/delete-post/{post_id}', [
         'uses' => 'PostController@getDeletePost',
         'as' => 'post.delete',
