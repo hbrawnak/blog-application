@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">LaraApp <small>Dashboard</small></a>
+      <a class="navbar-brand" href="#">writings <small>Dashboard</small></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

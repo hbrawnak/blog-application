@@ -14,10 +14,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
     public function getAdminDashboard()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(5);
+        $users = User::orderBy('created_at', 'desc')->where('user_type', 0)->paginate(5);
         //$posts = Post::orderBy('created_at', 'desc')->get(); //it's without pagination.
         return view('admin.home', ['users' => $users]);
     }
@@ -28,14 +29,10 @@ class AdminController extends Controller {
             'email' => 'required',
             'password' => 'required'
         ]);
-        if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'user_status' => $request['user_status'], 'user_type' => $request['user_type']]))
-        {
-            if($request['user_status'] == '0' && $request['user_type'] == '1')
-            {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'user_status' => $request['user_status'], 'user_type' => $request['user_type']])) {
+            if ($request['user_status'] == '0' && $request['user_type'] == '1') {
                 return redirect()->route('adminDashboard');
-            }
-            else
-            {
+            } else {
                 return redirect()->back();
             }
         }
@@ -87,14 +84,12 @@ class AdminController extends Controller {
         //die();
 
         $user = DB::table('users')->where('id', $user_id);
-        if($request['password'] !== '') {
-            $new_pass = bcrypt($request['password']);
+        if ($request['password'] !== '') {
+            $new_pass       = bcrypt($request['password']);
             $user->password = $new_pass;
             DB::table('users')->where('id', $user_id)->update(['password' => $new_pass]);
             return redirect()->back()->with(['message' => 'User profile has updated!']);
-        }
-        else
-        {
+        } else {
             return redirect()->back()->with(['message' => 'User profile did not update!']);
         }
     }

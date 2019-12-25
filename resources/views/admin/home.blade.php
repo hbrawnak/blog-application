@@ -42,22 +42,22 @@
                 </td>
                 <td>{{ $user->created_at }}</td>
                 <td>
+                    <a class="btn btn-default" href="{{ route('user-profile', ['user_id' => $user->id]) }}" title="View Posts" role="button">View Profile</a>
                 <?php
                 if($user->user_status == 1)
                 {
                 ?>
-                    <a class="btn btn-default" href="{{ route('user.inactive', ['user_id' => $user->id]) }}" title="Active" role="button">Active</a>
+                    <a class="btn btn-info" href="{{ route('user.inactive', ['user_id' => $user->id]) }}" title="Active" role="button">Active</a>
                  <?php
                 }
                 if($user->user_status == 0)
                 {
                 ?>
-                    <a class="btn btn-default" href="{{ route('user.active', ['user_id' => $user->id]) }}" title="Inactive" role="button">Inactive</a>
+                    <a class="btn btn-info" href="{{ route('user.active', ['user_id' => $user->id]) }}" title="Inactive" role="button">Inactive</a>
                 <?php
                 }
                 ?>
-                    <a class="btn btn-default" href="{{ route('user.delete', ['user_id' => $user->id]) }}" title="Delete User" role="button">Delete</a>
-                    <a class="btn btn-default" href="{{ route('user-profile', ['user_id' => $user->id]) }}" title="View Posts" role="button">View Profile</a>
+                    <a class="btn btn-danger" href="{{ route('user.delete', ['user_id' => $user->id]) }}" title="Delete User" role="button">Delete</a>
                 </td>
             </tr>
         @endforeach

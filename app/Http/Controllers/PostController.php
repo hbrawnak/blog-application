@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Post;
@@ -21,11 +22,10 @@ class PostController extends Controller
             'body' => 'required|max:1000'
         ]);
 
-        $post = new Post();
+        $post       = new Post();
         $post->body = $request['body'];
-        $message = 'This was an error!';
-        if ($request->user()->posts()->save($post))
-        {
+        $message    = 'This was an error!';
+        if ($request->user()->posts()->save($post)) {
             $message = 'Post successfully created!';
         }
         return redirect()->back()->with(['message' => $message]);
@@ -40,8 +40,7 @@ class PostController extends Controller
     public function getDeletePost($post_id)
     {
         $post = Post::where('id', $post_id)->first();
-        if(Auth::user() != $post->user)
-        {
+        if (Auth::user() != $post->user) {
             return redirect()->back();
         }
         $post->delete();

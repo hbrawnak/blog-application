@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 
@@ -20,14 +21,14 @@ class UserController extends Controller
             'password' => 'required|max:10|min:4'
         ]);
 
-        $email = $request['email'];
+        $email      = $request['email'];
         $first_name = $request['first_name'];
-        $password = bcrypt($request['password']);
+        $password   = bcrypt($request['password']);
 
-        $user = new User();
-        $user->email = $email;
+        $user             = new User();
+        $user->email      = $email;
         $user->first_name = $first_name;
-        $user->password = $password;
+        $user->password   = $password;
 
         $user->save();
 
@@ -71,14 +72,14 @@ class UserController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:120'
         ]);
-        $user = Auth::user();
-        $old_name = $user->first_name;
+        $user             = Auth::user();
+        $old_name         = $user->first_name;
         $user->first_name = $request['first_name'];
         $user->update();
-        $file = $request->file('image');
-        $filename = $request['first_name'] . '-' . $user->id . '.jpg';
+        $file         = $request->file('image');
+        $filename     = $request['first_name'] . '-' . $user->id . '.jpg';
         $old_filename = $old_name . '-' . $user->id . '.jpg';
-        $update = false;
+        $update       = false;
         if (Storage::disk('local')->has($old_filename)) {
             $old_file = Storage::disk('local')->get($old_filename);
             Storage::disk('local')->put($filename, $old_file);
@@ -121,8 +122,8 @@ class UserController extends Controller
         //die();
 
         $user = Auth::user();
-        if($request['password'] !== ''){
-            $new_pass = bcrypt($request['password']);
+        if ($request['password'] !== '') {
+            $new_pass       = bcrypt($request['password']);
             $user->password = $new_pass;
         }
         $user->update();

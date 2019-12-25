@@ -12,50 +12,37 @@
     @include('includes.message-block')
     <section class="row new-post">
         <div class="col-md-6 col-md-offset-3">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-default btn-lg post-button" data-toggle="modal" data-target="#myModal">
-              Create Post
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Create Post</h4>
-                  </div>
-                  <div class="modal-body">
-                    <form action="{{ route('post.create') }}" method="post">
-                      <div class="form-group">
-                          <textarea class="form-control" name="body" rows="3" placeholder="Write your post here..."></textarea>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-info">Post</button>
-                          <input type="hidden" name="_token" value="{{ Session::token() }}"/>
-                      </div>
-                  </form>
-                  </div>
+            <form action="{{ route('post.create') }}" method="post">
+                <div class="form-group">
+                    <textarea class="form-control" name="body" rows="3"
+                              placeholder="Write your post here..."></textarea>
                 </div>
-              </div>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Post</button>
+                    <input type="hidden" name="_token" value="{{ Session::token() }}"/>
+                </div>
+            </form>
         </div>
     </section>
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
-              @foreach($posts as $post)
+            @foreach($posts as $post)
                 <article class="post" data-postid="{{ $post->id }}">
                     <p>{{ str_limit($post->body, $limit = 200, $end ="...") }}
-                    @if(strlen($post->body) >= 200 )
-                    <a class="btn btn-link" href="{{ route('post', ['post_id' => $post->id]) }}" role='button'>See More</a>
-                    @endif
+                        @if(strlen($post->body) >= 200 )
+                            <a class="btn btn-link" href="{{ route('post', ['post_id' => $post->id]) }}" role='button'>See
+                                More</a>
+                        @endif
                     </p>
 
                     <div class="info">
-                    @if(Auth::user() != $post->user)
-                        Posted by <a href="{{ route('profile',[$post->user_id]) }}">{{ $post->user->first_name }}</a> on {{ $post->created_at }}
+                        @if(Auth::user() != $post->user)
+                            Posted by <a
+                                    href="{{ route('profile',[$post->user_id]) }}">{{ $post->user->first_name }}</a>
+                            on {{ $post->created_at }}
                         @else
-                        Posted by {{ $post->user->first_name }} on {{ $post->created_at }}
+                            Posted by {{ $post->user->first_name }} on {{ $post->created_at }}
                         @endif
                     </div>
                     <div class="interaction">
@@ -68,7 +55,7 @@
             @endforeach
         </div>
         <div class="pagination">
-        {!! $posts->render() !!}
+            {!! $posts->render() !!}
         </div>
     </section>
 
@@ -76,7 +63,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Edit Post</h4>
                 </div>
                 <div class="modal-body">
