@@ -45,14 +45,14 @@
                     <h3>Sign Up</h3>
                     <form action="{{ route('signup') }}" method="post">
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input class="form-control" type="text" name="email" id="email"
-                                   value="{{ Request::old('email') }}">
-                        </div>
-                        <div class="form-group">
                             <label for="first_name">Name:</label>
                             <input class="form-control" type="text" name="first_name" id="first_name"
                                    value="{{ Request::old('first_name') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input class="form-control" type="text" name="email" id="email"
+                                   value="{{ Request::old('email') }}">
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
